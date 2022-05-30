@@ -5,7 +5,7 @@ import Dashboard from './Dashboard';
 import Pengguna from './Pengguna';
 import Detail from './Detail';
 import configData from "../config/config.json"
-import {Link ,useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import PetaView from './PetaView';
 
 function Main() {
@@ -16,9 +16,9 @@ function Main() {
   useEffect(() => {
     const url = configData.Developer_API +"userOne"
     fetch(url,{
-      credentials:"include",
-      method:"GET"
-    }).then(res=>res.json()).then(res=>{
+      method:"GET",
+      credentials:"include"
+  }).then(res=>res.json()).then(res=>{
       console.log(res)
       if(res["RTN"]){
         setData(res)

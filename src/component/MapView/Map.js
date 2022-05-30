@@ -3,7 +3,7 @@ import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 import * as WMS from "leaflet.wms"
 import configApi from "../../config/config.json"
-import { MapContainer, TileLayer,useMap,useMapEvents,GeoJSON} from "react-leaflet";
+import { MapContainer, TileLayer,useMap,useMapEvents} from "react-leaflet";
 
 function Map({setData,setSelect}) {
 
@@ -83,7 +83,7 @@ function Map({setData,setSelect}) {
   return (
     <div className='w-full h-full'>
         <MapContainer
-            center={[-7.769491, 110.378987]}
+            center={[-4.999963, 119.572435]}
             zoom={17}
             className="h-screen"
             zoomControl={false}
@@ -93,19 +93,19 @@ function Map({setData,setSelect}) {
             }}
             whenReady={(e)=>setMap(e)}
         >
-            <CustomWMSLayer
-            url={configApi.Developer_Geoserver_API+"geoserver/plot_maros/wms"}
-            layers={"plot_maros:Pengajuan"}
-            options={{
-                format: "image/png",
-                transparent: "true",
-                tiled: "true",
-                info_format: "application/json",
-                identify: false,
-                maxZoom: 22,
-            }}
-            />
-             <GetFeatureInfoUrlHandle/>
+              <CustomWMSLayer
+              url={configApi.Developer_Geoserver_API+"geoserver/plot_maros/wms"}
+              layers={"plot_maros:Pengajuan"}
+              options={{
+                  format: "image/png",
+                  transparent: "true",
+                  tiled: "true",
+                  info_format: "application/json",
+                  identify: false,
+                  maxZoom: 22,
+              }}
+              />
+              <GetFeatureInfoUrlHandle/>
             <TileLayer url="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}" maxZoom={22} />
         </MapContainer>
     </div>

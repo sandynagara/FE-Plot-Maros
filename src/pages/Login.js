@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import TextField from '@mui/material/TextField';
-import {Link,useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 import Logo from "../images/Logo.png"
 import configData from "../config/config.json"
 import Swal from "sweetalert2"
@@ -10,10 +10,9 @@ function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate();
+  
   const login = () => {
-    console.log(username,password)
     const url = configData.Developer_API+"login"
-    console.log(url)
     fetch(url,{
       headers: {
         'Accept': 'application/json',
@@ -26,6 +25,7 @@ function Login() {
       }),
       credentials:"include",
     }).then(res=>res.json()).then(res=>{
+      console.log(res)
       if(res["RTN"]){
         Swal.fire({
           icon: 'success',

@@ -3,7 +3,7 @@ import UserLogin from '../component/Dashboard/UserLogin'
 import ItemPengajuan from '../component/MapView/ItemPengajuan'
 import configData from "../config/config.json"
 import Map from '../component/MapView/Map'
-import {AiOutlineArrowLeft,AiOutlineClose} from "react-icons/ai"
+import {AiOutlineArrowLeft} from "react-icons/ai"
 
 function PetaView() {
 
@@ -14,6 +14,7 @@ function PetaView() {
 
   useEffect(() => {
     const url = configData.Developer_API+"pengajuan"
+    console.log(url)
     fetch(url,{
         method: 'GET',
         credentials: 'include'
