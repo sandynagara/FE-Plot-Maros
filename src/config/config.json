@@ -1,5 +1,5 @@
 {
-    "Developer_API":"https://kantahmaros.com/api/",
+    "Developer_API":"http://localhost:5000/api/",
     "Developer_Geoserver_API":"http://kantahmaros.com:8080/",
     "Simpan":{
         "SERVER_API_Develop": "http://localhost:5000/api/",

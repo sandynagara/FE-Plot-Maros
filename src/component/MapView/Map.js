@@ -5,11 +5,10 @@ import * as WMS from "leaflet.wms"
 import configApi from "../../config/config.json"
 import { MapContainer, TileLayer,useMap,useMapEvents} from "react-leaflet";
 
-function Map({setData,setSelect}) {
+function Map({setData,setSelect,position,setPosition}) {
 
-    const [map, setMap] = useState(false)
-    const [first, setFirst] = useState(true)
-
+  const [map, setMap] = useState(false)
+  const [first, setFirst] = useState(true)
     
   var getFeatureInfoUrl = (url, map, e,layer) => {
     // Construct a GetFeatureInfo request URL given a point
@@ -55,8 +54,10 @@ function Map({setData,setSelect}) {
                 method:"GET",
                 credentials:"include"
             }).then(res=>res.json()).then(res=>{
-                setSelect(true)
-                setData([res])
+                if(res !== null){
+                  setSelect(true)
+                  setData([res])
+                }
             }).catch(err=>console.log(err))
 
          
@@ -80,33 +81,41 @@ function Map({setData,setSelect}) {
     return null;
   }
 
+  var Changedview = center => {
+    const map = useMap();
+    if(position){
+      map.setView(center.center);
+    }
+    return null;
+  }
+
   return (
-    <div className='w-full h-full'>
+    <div className='w-full' style={{height:"calc(100vh-200px)"}}>
         <MapContainer
             center={[-4.999963, 119.572435]}
             zoom={17}
-            className="h-screen"
             zoomControl={false}
+            className="h-screen"
             style={{
-                width:"calc(100%-200px)"
-                
+                width:"calc(100%-200px)",
             }}
             whenReady={(e)=>setMap(e)}
         >
-              <CustomWMSLayer
-              url={configApi.Developer_Geoserver_API+"geoserver/plot_maros/wms"}
-              layers={"plot_maros:Pengajuan"}
-              options={{
-                  format: "image/png",
-                  transparent: "true",
-                  tiled: "true",
-                  info_format: "application/json",
-                  identify: false,
-                  maxZoom: 22,
-              }}
-              />
-              <GetFeatureInfoUrlHandle/>
-            <TileLayer url="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}" maxZoom={22} />
+          <Changedview center={position}/>
+          <CustomWMSLayer
+          url={configApi.Developer_Geoserver_API+"geoserver/plot_maros/wms"}
+          layers={"plot_maros:Pengajuan"}
+          options={{
+              format: "image/png",
+              transparent: "true",
+              tiled: "true",
+              info_format: "application/json",
+              identify: false,
+              maxZoom: 22,
+          }}
+          />
+          <GetFeatureInfoUrlHandle/>
+          <TileLayer url="https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}" maxZoom={22} />
         </MapContainer>
     </div>
   )

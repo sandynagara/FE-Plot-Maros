@@ -1,5 +1,4 @@
 import React from 'react'
-import ktp from "../../images/ktp_testing.jpg"
 import ImageSingle from '../Utils/ImageSingle'
 import configData from "../../config/config.json"
 
@@ -32,8 +31,8 @@ function InformasiPemohon({data=false  ,open ,setOpen}) {
           : {data && data["User"]["telepon"]}
           </div>
         </div>
-        {data && <ImageSingle open={open} setOpen={setOpen} image={configData.Developer_API+`profil/foto/${data["User"]["id"]}&${data["User"]["ktp_name"]}`} judul="Foto"/>}
-        {data && <ImageSingle open={open} setOpen={setOpen} image={configData.Developer_API+`profil/foto/${data["User"]["id"]}&${data["User"]["selfie_name"]}`} judul="KTP"/>}
+        {data && <ImageSingle open={open} setOpen={setOpen} image={configData.Developer_API+`profil/foto/${data["User"]["id"]}&${data["User"]["selfie_name"]}`} judul="Foto"/>}
+        {data && <ImageSingle open={open} setOpen={setOpen} image={configData.Developer_API+`profil/foto/${data["User"]["id"]}&${data["User"]["ktp_name"]}`} judul="KTP"/>}
         {data && <ImageSingle open={open} setOpen={setOpen} image={configData.Developer_API+`profil/foto/${data["User"]["id"]}&${data["User"]["tanda_tangan_name"]}`} judul="Tanda Tangan"/>}
     </div>
   )

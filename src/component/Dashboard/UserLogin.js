@@ -1,5 +1,4 @@
 import React from 'react'
-import {AiOutlinePoweroff} from "react-icons/ai"
 import LogoBpn from './LogoBpn'
 
 function UserLogin() {

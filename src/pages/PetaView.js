@@ -11,6 +11,7 @@ function PetaView() {
   const [open, setOpen] = useState(true)
   const [select, setSelect] = useState(false)
   const [update, setUpdate] = useState(true)
+  const [position, setPosition] = useState(false)
 
   useEffect(() => {
     const url = configData.Developer_API+"pengajuan"
@@ -28,7 +29,7 @@ function PetaView() {
       <UserLogin/>
       <div className='p-5 rounded-md  relative bg-white'>
         <div className=' h-screen pr-4 absolute flex items-center z-[1000] ' >
-          <div className='overflow-y-scroll bg-white p-2 h-screen duration-500  w-full' style={open ? {width:"100%"} : {width:"0px"}}>
+          <div className='overflow-y-scroll bg-gray-100 p-2 h-screen duration-500  w-full' style={open ? {width:"100%"} : {width:"0px"}}>
             <div className='p-2 w-[400px] mb-1 font-medium flex items-center text-center '>
               {select && <AiOutlineArrowLeft size={20} color="red" className='cursor-pointer mr-3' 
               onClick={()=>
@@ -41,7 +42,7 @@ function PetaView() {
             </div>
               {data && 
                 data.map((data,index)=>{
-                  return <ItemPengajuan key={index} data={data} />
+                  return <ItemPengajuan key={index} data={data} setPosition={setPosition} />
                 })
               }
             </div>
@@ -49,7 +50,7 @@ function PetaView() {
             <AiOutlineArrowLeft className='cursor-pointer duration-500' style={open ? {transform:"rotate(0deg)"} : {transform:"rotate(180deg)"}} />
           </div>
         </div>
-        <Map  setData={setData} setSelect={setSelect}/>
+        <Map  setData={setData} setSelect={setSelect} position={position} setPosition={setPosition}/>
       </div>
     </div>
   )

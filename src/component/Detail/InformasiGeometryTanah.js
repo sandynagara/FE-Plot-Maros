@@ -1,8 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import ImageMulti from '../Utils/ImageMulti'
 import Peta from '../Utils/Peta'
 
-function InformasiGeometryTanah({data,open,setOpen}) {
+function InformasiGeometryTanah({data,open,setOpen,setImageScreenshoot,takeScreenshot,setTakeScreenshoot}) {
 
   return (
     <div className='mt-5 p-4 border-2 border-gray rounded-md bg-white'>
@@ -27,7 +27,7 @@ function InformasiGeometryTanah({data,open,setOpen}) {
       </div>
     </div>
    
-    <Peta geoJsonData={data["bidang_tanah"]}/>
+    <Peta geoJsonData={data["bidang_tanah"]} setImageScreenshoot={setImageScreenshoot} takeScreenshot={takeScreenshot} setTakeScreenshoot={setTakeScreenshoot}/>
 </div>
   )
 }

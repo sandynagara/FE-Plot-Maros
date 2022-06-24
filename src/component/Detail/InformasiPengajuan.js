@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import ActionDetail from './ActionDetail'
 
-function InformasiPengajuan({data=[]}) {
+function InformasiPengajuan({data=[],pdf}) {
 
   const [update, setUpdate] = useState(false)
 
@@ -66,16 +66,23 @@ function InformasiPengajuan({data=[]}) {
           : {data["petugas_cek_date"] ? data["petugas_cek"]+" ("+data["petugas_cek_date"]+")" : "-"}
           </div>
         </div>
-        {data["status"] !== "selesai" &&
-          <div className='w-full flex justify-end'>
+        <div className='w-full flex justify-end'>
+        {data["status"] !== "selesai" ?
+    
             <div className='px-5 py-2 cursor-pointer text-white rounded-md font-medium bg-sky-500 hover:bg-sky-800'
                 onClick={()=>cekUpdate()}
             >
                 {proses(data["status"])}
             </div>
-          </div>
+            :
+              <div className='px-5 py-2 mx-2 cursor-pointer text-white rounded-md font-medium bg-sky-500 hover:bg-sky-800'
+                  onClick={pdf}
+              >
+                  Cetak PDF
+              </div>
+       
         }
-        
+           </div>
     </div>
   )
 }

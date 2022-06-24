@@ -2,9 +2,9 @@ import React,{useMemo,useState,useEffect} from 'react'
 import InformasiJumlah from '../component/Dashboard/InformasiJumlah'
 import UserLogin from '../component/Dashboard/UserLogin'
 import TambahPengguna from '../component/Pengguna/TambahPengguna'
-import Sidebar from '../component/Sidebar/Sidebar'
 import configData from "../config/config.json"
 import TableDashboard from '../component/Utils/TableDashboard'
+import EditDeletePengguna from '../component/Pengguna/EditDeletePengguna'
 
 function Pengguna() {
 
@@ -17,7 +17,19 @@ function Pengguna() {
           method:"GET",
           credentials:"include"
       }).then(res=>res.json()).then(res=>{
-        setData(res["MSG"])
+            console.log(res["MSG"])
+            if(res["MSG"].length > 0){
+                var data = []
+                res["MSG"].map(dataDetail=>{
+                    data.push({
+                        kelas: dataDetail["kelas"],
+                        nama:  dataDetail["nama"],
+                        username:  dataDetail["username"],
+                        aksi: <EditDeletePengguna username={dataDetail["username"]} nama={dataDetail["nama"]} kelasPengguna={dataDetail["kelas"]}/>,
+                    })
+                })
+                setData(data)
+            }
       }).catch(err=>console.log(err))
     }, [])
     
@@ -26,7 +38,7 @@ function Pengguna() {
         () => [
         {
             Header: 'Username',
-            accessor: 'username', // accessor is the "key" in the data
+            accessor: 'username', 
         },
         {
             Header: 'Nama Lengkap',
@@ -35,6 +47,10 @@ function Pengguna() {
         {
             Header: 'Kelas',
             accessor: 'kelas',
+        },
+        {
+            Header: 'Aksi',
+            accessor: 'aksi',
         }
         ],
         []

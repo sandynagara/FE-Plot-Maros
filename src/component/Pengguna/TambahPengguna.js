@@ -11,9 +11,11 @@ function TambahPengguna({setTambah}) {
     const [namaLengkap, setNamaLengkap] = useState("")
     const [kelas, setKelas] = useState("User")
     const [password, setPassword] = useState("")
+    const [pertanyaan, setPertanyaan] = useState("")
+    const [jawaban, setJawaban] = useState("")
 
     const submit = () => {
-        if(username == "" || namaLengkap == "" || password == ""){
+        if(username === "" || namaLengkap === "" || password === ""){
             return
         }
 
@@ -28,7 +30,9 @@ function TambahPengguna({setTambah}) {
                 username:username,
                 password:password,
                 nama:namaLengkap,
-                kelas:kelas
+                kelas:kelas,
+                pertanyaan:pertanyaan,
+                jawaban:jawaban
             }),
         }).then(res=>res.json()).then(res=>{
             if(res["RTN"]){
@@ -98,6 +102,38 @@ function TambahPengguna({setTambah}) {
                 className='w-full'
                 type="password"
                 onChange={(e)=>setPassword(e.target.value)}
+            />
+            <TextField
+                id="standard-select-currency"
+                select
+                label="Pertanyaan"
+                margin='dense'
+                onChange={(e)=>setPertanyaan(e.target.value)}
+                className='w-full text-left'
+                >
+                <MenuItem value="Siapa nama teman masa kecil anda?">
+                    Siapa nama teman masa kecil anda?
+                </MenuItem>
+                <MenuItem value="Apa merek kendaraan pertama anda?">
+                    Apa merek kendaraan pertama anda?
+                </MenuItem>
+                <MenuItem value="Siapa nama hewan peliharaan anda?">
+                    Siapa nama hewan peliharaan anda?
+                </MenuItem>
+                <MenuItem value="Dimana anda bersekolah dasar?">
+                    Dimana anda bersekolah dasar?
+                </MenuItem>
+                <MenuItem value="Dimana kota tempat anda lahir?">
+                    Dimana kota tempat anda lahir?
+                </MenuItem>
+            </TextField>
+            <TextField
+                required
+                id="standard-required"
+                label="Jawaban"
+                margin='dense'
+                className='w-full'
+                onChange={(e)=>setJawaban(e.target.value)}
             />
             <div className='w-full flex justify-end my-2'>
                 <div className='px-5 py-2 cursor-pointer text-white rounded-md font-medium bg-sky-500 hover:bg-sky-800'

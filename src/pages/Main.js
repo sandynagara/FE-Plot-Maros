@@ -20,9 +20,8 @@ function Main() {
       credentials:"include"
   }).then(res=>res.json()).then(res=>{
       console.log(res)
-      if(res["RTN"]){
+      if(res["RTN"] && res["MSG"]["kelas"] === "admin"){
         setData(res)
-        navigate("/dashboard");
       }else{
         navigate("/login");
       }

@@ -1,8 +1,8 @@
 import React from 'react'
 import ButtonSidebar from './ButtonSidebar'
 import {MdDashboard} from "react-icons/md"
-import {AiOutlinePoweroff,AiOutlineUser} from "react-icons/ai"
-import {FaUser,FaMap} from "react-icons/fa"
+import {AiOutlinePoweroff} from "react-icons/ai"
+import {FaUsers,FaMap,FaUserCircle} from "react-icons/fa"
 import { Link,useNavigate } from 'react-router-dom'
 
 function Sidebar({data}) {
@@ -15,17 +15,11 @@ function Sidebar({data}) {
     }
 
   return (
-      <div style={{width:"320px"}}>
-        <div  style={{width:"280px",backgroundColor:"#24344B"}} className='fixed flex flex-col items-center h-screen  min-h-full  left-0 top-0'>
-            <div className='bg-white p-6 rounded-full mt-20'>
-                <AiOutlineUser size={25}/>
-              
-            </div>
-            <div className='text-white font-medium mt-4'>
-                {data && data["nama"]}
-            </div>
+      <div style={{width:"270px"}}>
+        <div  style={{width:"240px",backgroundColor:"#24344B"}} className='fixed flex flex-col items-center h-screen  min-h-full  left-0 top-0'>
             
-            <div style={{backgroundColor:"rgb(43,60,88)"}} className='rounded-md mt-20  w-full h-full text-center'>
+            <div style={{backgroundColor:"rgb(43,60,88)"}} className='rounded-md  w-full h-full text-center'>
+            <ButtonSidebar judul={data["nama"]} icon={<FaUserCircle size={20}/>}/>
                 <Link to={"/peta"}>
                     <ButtonSidebar judul={"Map View"} icon={<FaMap size={20}/>}/>
                 </Link>
@@ -35,7 +29,7 @@ function Sidebar({data}) {
                 </Link>
 
                 <Link to={"/admin"}>
-                    <ButtonSidebar judul={"Pengguna"} icon={<FaUser size={20}/>}/>
+                    <ButtonSidebar judul={"Pengguna"} icon={<FaUsers size={20}/>}/>
                 </Link>
 
                 <div className='absolute bottom-0 w-full' onClick={logOut}>
