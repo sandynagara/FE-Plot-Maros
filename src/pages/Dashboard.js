@@ -70,14 +70,12 @@ export default function Dashboard() {
   
 
   return (
-
       <div className='bg-gray-200 w-screen min-h-screen h-full flex flex-col px-10 py-5'>
       <UserLogin/>
       <div className='p-5 rounded-md bg-white'>
         <InformasiJumlah text={"Daftar Pengajuan Bidang Tanah"}/>
-            <TableDashboard data={dataTable} columns={columns}/>
+        <TableDashboard data={dataTable} columns={columns}/>
         </div>
       </div>
-
   )
 }
