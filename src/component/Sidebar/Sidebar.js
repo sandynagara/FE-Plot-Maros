@@ -1,7 +1,7 @@
 import React from 'react'
 import ButtonSidebar from './ButtonSidebar'
 import {MdDashboard} from "react-icons/md"
-import {AiOutlinePoweroff} from "react-icons/ai"
+import {AiOutlinePoweroff,AiFillAndroid} from "react-icons/ai"
 import {FaUsers,FaMap,FaUserCircle} from "react-icons/fa"
 import { Link,useNavigate } from 'react-router-dom'
 
@@ -30,6 +30,10 @@ function Sidebar({data}) {
 
                 <Link to={"/admin"}>
                     <ButtonSidebar judul={"Pengguna"} icon={<FaUsers size={20}/>}/>
+                </Link>
+
+                <Link to="/files/CekPlotMaros.apk" target="_blank" download>
+                    <ButtonSidebar judul={"Download APK"} icon={<AiFillAndroid size={20}/>}/>
                 </Link>
 
                 <div className='absolute bottom-0 w-full' onClick={logOut}>
